@@ -1,0 +1,31 @@
+<div class="page-container">
+    <div class="content-wrap">
+        <div [ngStyle]="{'padding': '1rem'}" class="row"></div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Comisión</th>
+                        <th scope="col">Beca Coder</th>
+                        <th scope="col">Alumno Desde</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let alumno of alumnos">
+                            <td>{{alumno.nombre | uppercase}}</td>
+                            <td>{{alumno.edad}}</td>
+                            <td [ngStyle]="{'font-weight': 'bold'}">{{alumno.comision}}</td>
+                            <td><i [ngClass]="{'bi bi-check-lg': alumno.becaCoder, 'bi bi-x-lg': !alumno.becaCoder}"></i></td>
+                            <td>{{alumno.alumnoDesde | date:'mediumDate'}}</td>
+                        </tr>
+                    </tbody>    
+                </table>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+</div>
