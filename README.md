@@ -1,6 +1,14 @@
 # Desafio2
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
+# Lista de alumnos
+
+Consigna
+
+Entregar un proyecto que dado un array de alumnos los muestre en forma de lista y aplique diferentes estilos según algunas condiciones 🙌.
+Aspectos a incluir
+
+Se espera la entrega de un proyecto configurado y funcional utilizando creación de componentes.
+Recuerda hacer uso correcto de directivas (estructurales y de atributo) y pipes.
 
 ## Development server
 
