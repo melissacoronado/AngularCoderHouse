@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>  Alumnos     </h1>
+
+<div mat-dialog-content>   
+      <form [formGroup]="studentsForm">        
+        <div class="row">
+            <div class="col-6">
+              <mat-form-field class="w-100">
+                <mat-label>Nombre</mat-label>
+                <input formControlName="nombre" matInput />
+                <mat-error>
+                  {{ studentsForm.get("nombre")?.errors | formErrors }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-form-field class="w-100">
+                <mat-label>Apellido</mat-label>
+                <input formControlName="apellido" matInput />
+                <mat-error>
+                  {{ studentsForm.get("apellido")?.errors | formErrors }}
+                </mat-error>
+              </mat-form-field>
+            </div>  
+            <div class="col-8">
+              <mat-form-field class="w-100">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" matInput />
+                <mat-error>
+                  {{ studentsForm.get("email")?.errors | formErrors }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <section class="example-section">
+                <mat-checkbox class="example-margin" formControlName="cursando">Cursando</mat-checkbox>
+              </section>
+              <mat-error>
+                {{ studentsForm.get("cursando")?.errors | formErrors }}
+              </mat-error>
+            </div>
+        </div>
+         
+      </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button (click)="onSubmit()" cdkFocusInitial color="primary">Guardar</button>
+  </div>

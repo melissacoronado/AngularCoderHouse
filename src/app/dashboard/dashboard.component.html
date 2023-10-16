@@ -1,0 +1,18 @@
+<mat-drawer-container class="example-container" autosize>
+
+  <!--sidebar-->
+    <mat-drawer #drawer [opened]="showSidebar" class="example-sidenav" mode="side" position="start">
+      <app-sidenav></app-sidenav>
+    </mat-drawer>
+
+    <!--Contenido-->
+    <div class="example-sidenav-content">
+      <app-toolbar (toggleSidebar)="showSidebar = !showSidebar"></app-toolbar>
+      
+      <main style="padding: 1rem">  
+        <app-students></app-students>
+      </main>
+    </div>
+  
+  </mat-drawer-container>
+  
