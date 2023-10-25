@@ -1,0 +1,13 @@
+<p>
+    <mat-toolbar>
+      <span>Desafio 4</span>
+    </mat-toolbar>
+  </p>
+  <main style="padding: 1rem"> 
+    <h3>Estudiantes actualmente cursando</h3> 
+    {{studentsCursando$ | async | json}}
+    
+    <h3>Cantidad de Estudiantes actualmente cursando</h3> 
+    {{counter}}
+
+  </main>
