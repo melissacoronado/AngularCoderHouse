@@ -38,7 +38,10 @@ const routes: Routes = [
     path: 'auth',
     component: AuthComponent
   },
-  
+  { path: '**', 
+    redirectTo: 'dashboard', 
+    pathMatch: 'full' 
+  },
 ];
 
 @NgModule({

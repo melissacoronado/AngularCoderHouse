@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { classesService } from '../../classes.service';
+import { ICourse } from '../../../courses/models/courses';
 
 @Component({
   selector: 'app-classes-dialog',
@@ -10,6 +11,11 @@ import { classesService } from '../../classes.service';
 })
 export class ClassesDialogComponent {
   classesForm: FormGroup;
+
+  daysOfWeek: FormGroup;
+
+  //reemplazar por llamada al servicio de cursos
+  cursosList: ICourse[] = [{id: 1, nombre: 'Angular', capacidad: 100, activo: false}, {id: 2, nombre: 'React', capacidad: 100, activo: false}];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,9 +31,10 @@ export class ClassesDialogComponent {
         diasClases: ['', Validators.required],
         fechaInicio: ['', Validators.required],
         fechaFin: ['', Validators.required],
-        courseId: ['', Validators.required],
+        courseId: ['', Validators.required],        
       }
     );
+    
 
     if (classId) {
       this.classService.getClassById$(classId).subscribe({
@@ -39,7 +46,30 @@ export class ClassesDialogComponent {
         },
       });
     }
+
+
+    this.daysOfWeek = this.formBuilder.group({
+      lunes: [false],
+      martes: [false],
+      miercoles: [false],
+      jueves: [false],
+      viernes: [false],
+      sabado: [false]
+    });
+
+    //this.daysOfWeek.setValidators(this.alMenosUnoSeleccionado);
+    
   }
+
+  alMenosUnoSeleccionado(form: FormGroup) {
+    const diasSemana = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+
+    const alMenosUnoSeleccionado = diasSemana.some(dia => form.get(dia)?.value);
+
+    return alMenosUnoSeleccionado ? null : { ningunDiaSeleccionado: true };
+  }
+
+  
 
   onSubmit(): void { 
     if (this.classesForm.invalid) {
@@ -48,5 +78,6 @@ export class ClassesDialogComponent {
       this.matDialogRef.close(this.classesForm.value);
     }
   }
+
 
 }

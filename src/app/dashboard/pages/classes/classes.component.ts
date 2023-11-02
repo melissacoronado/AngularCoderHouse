@@ -15,7 +15,6 @@ export class ClassesComponent {
 
   constructor(private clasesService: classesService, private matDialog: MatDialog){
     this.classes$ = this.clasesService.getClasses$();
-   
   }
 
   onAddClass():void{

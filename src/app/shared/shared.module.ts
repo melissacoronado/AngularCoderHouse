@@ -13,6 +13,9 @@ import { FormErrorsPipe } from './pipes/form-errors.pipe';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { TitlesDirective } from './directives/titles.directive';
 import {MatCardModule} from '@angular/material/card';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [FullnamePipe, FormErrorsPipe, TitlesDirective],
@@ -35,6 +38,12 @@ import {MatCardModule} from '@angular/material/card';
     MatCheckboxModule,
     TitlesDirective,    
     MatCardModule,
+    MatListModule,
+    MatOptionModule,
+    MatListModule,
+    MatSelectModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     
   ]
 })
