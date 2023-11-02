@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>  Cursos     </h1>
+
+<div mat-dialog-content>   
+      <form [formGroup]="coursesForm">        
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="w-100">
+              <mat-label>Nombre</mat-label>
+              <input formControlName="nombre" matInput />
+              <mat-error>
+                {{ coursesForm.get("nombre")?.errors | formErrors }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+            <div class="col-6">
+              <mat-form-field class="w-100">
+                <mat-label>Capacidad</mat-label>
+                <input formControlName="capacidad" matInput />
+                <mat-error>
+                  {{ coursesForm.get("capacidad")?.errors | formErrors }}
+                </mat-error>
+              </mat-form-field>
+            </div>              
+            <div class="col-4">
+              <section class="example-section">
+                <mat-checkbox class="example-margin"formControlName="activo">Activo</mat-checkbox>
+              </section>
+              <mat-error>
+                {{ coursesForm.get("activo")?.errors | formErrors }}
+              </mat-error>
+            </div>
+        </div>
+         
+      </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button (click)="onSubmit()" cdkFocusInitial color="primary">Guardar</button>
+  </div>
+

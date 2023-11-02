@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { IStudent } from '../../models/students';
+import { StudentsService } from '../../students.service';
 
 @Component({
   selector: 'app-students-dialog',
@@ -13,9 +13,10 @@ export class StudentsDialogComponent {
   constructor(
     private formBuilder: FormBuilder,
     private matDialogRef: MatDialogRef<StudentsDialogComponent>,
+    private studentService: StudentsService,
 
     // RECIBO LA DATA
-    @Inject(MAT_DIALOG_DATA) public student?: IStudent
+    @Inject(MAT_DIALOG_DATA) public studentId?: number
   )
   {
     this.studentsForm = this.formBuilder.group(
@@ -28,11 +29,18 @@ export class StudentsDialogComponent {
       }
     );
 
-    //para cargar los datos en el dialog/modal
-    if (this.student) {
-      this.studentsForm.patchValue(this.student);
+    if (studentId) {
+      this.studentService.getStudentById$(studentId).subscribe({
+        next: (c) => {
+          if (c) {
+            //para cargar los datos en el dialog/modal
+            this.studentsForm.patchValue(c);
+          }
+        },
+      });
     }
 
+    
   }
 
   onSubmit(): void {

@@ -2,20 +2,13 @@ import { Component } from '@angular/core';
 import { IStudent } from './models/students';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsDialogComponent } from './components/students-dialog/students-dialog.component';
+import { StudentsService } from './students.service';
+import { Observable } from 'rxjs';
 
 
 
 
-const StudentsData: IStudent[] = [
-  {id: 1, nombre: 'Maria', apellido: 'Perez', email: 'correo@gmail.com', cursando: true,
-    cursos: [{id: 57890, nombre: 'Angular', activo: true}]},
-  {id: 2, nombre: 'Luis', apellido: 'Gómez', email: 'correo1@gmail.com', cursando: true,
-    cursos: [{id: 57890, nombre: 'Angular', activo: true}, {id: 47856, nombre: 'Backend', activo: false}]},
-  {id: 3, nombre: 'Laura', apellido: 'Pinho', email: 'correo2@gmail.com', cursando: false,
-    cursos: [{id: 77895, nombre: 'React', activo: true}]},
-  {id: 4, nombre: 'Ricardo', apellido: 'Valenzuela', email: 'correo3@gmail.com', cursando: true,
-  cursos: [{id: 57890, nombre: 'Angular', activo: true}, {id: 87856, nombre: 'Ingles IT', activo: true}]},
-];
+
 
 @Component({
   selector: 'app-students',
@@ -24,55 +17,53 @@ const StudentsData: IStudent[] = [
 })
 export class StudentsComponent {
   
-  students: IStudent[] = [];
-
+  students$: Observable<IStudent[]>;
  
-  constructor(private matDialog: MatDialog){
-    this.students = StudentsData;
+  constructor(private matDialog: MatDialog, private studentService: StudentsService){
+    this.students$ = studentService.getStudents$();
 
   }
 
-  openUsersDialog(): void{
+  onAddStudent():void{
     this.matDialog.open(StudentsDialogComponent)
-        .afterClosed()
-        .subscribe({
-          next: (v) => {
-            if (!!v) {
-              console.log(v);
-              this.students = [
-                ...this.students,
-                {
-                  ...v,
-                  id: this.students.length + 1
-                }
-              ]
-            }
-          }
-        });
+    .afterClosed()
+    .subscribe({
+      next: (result) => {
+        if(result){
+          this.students$ = this.studentService.addCourse$({
+            id: Math.floor(Math.random() * (1000 - 1 + 1)) + 1,
+            nombre: result.nombre,
+            apellido: result.apellido,
+            email: result.email,
+            cursando: result.cursando
+          });
+        }
+      }
+    })
   }
-
+  
   onDeleteStudent(studentId: number): void {
     if (confirm(`Confirma eliminar Alumno Id ${studentId}?`)) {
-      this.students = this.students.filter((u) => u.id !== studentId);
+      this.students$ = this.studentService.deleteStudent$(studentId);
     }
   }
 
-  onEditStudent(student: IStudent): void {
-    console.log(student);
+  onEditStudent(studentId: number): void {
     this.matDialog
       .open(StudentsDialogComponent, {
-        data: student,
+        data: studentId,
       })
       .afterClosed()
       .subscribe({
         next: (v) => {
-          if (!!v) {            
-            this.students = this.students.map((u) =>
-              u.id === student.id ? { ...u, ...v } : u
-            );
+          if (!!v) {  
+            this.students$ = this.studentService.editStudent$(studentId, v);          
           }
         },
       });
   }
+
+  
+
 
 }

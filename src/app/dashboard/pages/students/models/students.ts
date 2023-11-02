@@ -6,5 +6,4 @@ export interface IStudent {
     apellido: string;
     email: string;
     cursando: boolean;
-    cursos: ICourse[];
   }

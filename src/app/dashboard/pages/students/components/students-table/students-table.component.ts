@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IStudent } from '../../models/students';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-students-table',
@@ -8,6 +9,8 @@ import { IStudent } from '../../models/students';
 export class StudentsTableComponent {
   displayedColumns: string[] = ['id', 'nombre', 'email', 'cursando', 'acciones'];
 
+  constructor(private router: Router){}
+
   @Input()
   dataSource: IStudent[] = [];
   
@@ -15,5 +18,10 @@ export class StudentsTableComponent {
   deleteStudent = new EventEmitter<number>();
 
   @Output()
-  editStudent = new EventEmitter<IStudent>();
+  editStudent = new EventEmitter();
+
+  
+  detailStudent(studentId: number): void{
+    this.router.navigate(['dashboard', 'students', 'detail', studentId])
+  }
 }

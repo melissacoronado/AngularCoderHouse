@@ -12,7 +12,7 @@ import { MatListModule } from '@angular/material/list';
 import { FormErrorsPipe } from './pipes/form-errors.pipe';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { TitlesDirective } from './directives/titles.directive';
-
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [FullnamePipe, FormErrorsPipe, TitlesDirective],
@@ -33,7 +33,9 @@ import { TitlesDirective } from './directives/titles.directive';
     FormsModule,
     MatListModule,
     MatCheckboxModule,
-    TitlesDirective,
+    TitlesDirective,    
+    MatCardModule,
+    
   ]
 })
 export class SharedModule { }

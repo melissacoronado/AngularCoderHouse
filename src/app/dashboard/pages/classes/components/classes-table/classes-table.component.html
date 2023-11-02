@@ -1,0 +1,57 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Comision Column -->
+    <ng-container matColumnDef="comision">
+      <th mat-header-cell *matHeaderCellDef> Comisión </th>
+      <td mat-cell *matCellDef="let element"> {{element.comision}} </td>
+    </ng-container>
+  
+    <!-- diasClases Column -->
+    <ng-container matColumnDef="diasClases">
+      <th mat-header-cell *matHeaderCellDef> Dias Clases </th>
+      <td mat-cell *matCellDef="let element"> {{element.diasClases}} </td>
+    </ng-container>
+
+    <!-- fechaInicio Column -->
+    <ng-container matColumnDef="fechaInicio">
+        <th mat-header-cell *matHeaderCellDef> Fecha Inicio </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaInicio}} </td>
+      </ng-container>
+  
+    <!-- fechaFin Column -->
+    <ng-container matColumnDef="fechaFin">
+      <th mat-header-cell *matHeaderCellDef> Fecha Fin </th>
+      <td mat-cell *matCellDef="let element"> {{element.fechaFin}} </td>       
+    </ng-container>
+
+    <!-- course Column -->
+    <ng-container matColumnDef="fechaFin">
+        <th mat-header-cell *matHeaderCellDef> Curso </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaFin}} </td>       
+      </ng-container>
+  
+    <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="editClasses.emit(element.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteClasses.emit(element.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!--mat-paginator [pageSizeOptions]="[10, 20, 25]" showFirstLastButtons aria-label="Select page of periodic users">
+    </mat-paginator-->
+  </table>
+  
+  
+

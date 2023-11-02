@@ -1,0 +1,10 @@
+<div class="header-container">
+    <h1 appTitles>Clases</h1>
+    <button (click)="onAddClass()" mat-flat-button color="primary">
+      <mat-icon>add</mat-icon> Nuevo
+    </button>
+  </div>
+
+<app-classes-table [dataSource]="(classes$ | async) || []"
+(editClasses)="onEditClass($event)"
+(deleteClasses)="onDeleteClass($event)"></app-classes-table>

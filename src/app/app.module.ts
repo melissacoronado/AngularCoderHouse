@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { StudentsModule } from './dashboard/pages/students/students.module';
 import { SharedModule } from './shared/shared.module';
-
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -17,9 +17,9 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CoreModule,
     DashboardModule,
     SharedModule,
-    StudentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

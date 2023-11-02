@@ -1,11 +1,11 @@
 <div class="header-container">
   <h1 appTitles>Alumnos</h1>
-  <button (click)="openUsersDialog()" mat-flat-button color="primary">
+  <button (click)="onAddStudent()" mat-flat-button color="primary">
     <mat-icon>add</mat-icon> Nuevo
   </button>
 </div>
 
 <app-students-table 
-[dataSource]="students"
+[dataSource]="(students$ | async) || []"
 (deleteStudent)="onDeleteStudent($event)"
 (editStudent)="onEditStudent($event)"></app-students-table>

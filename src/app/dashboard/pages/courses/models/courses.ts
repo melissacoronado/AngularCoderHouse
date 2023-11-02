@@ -1,5 +1,6 @@
 export interface ICourse {
     id: number;
-    nombre: string;    
+    nombre: string; 
+    capacidad: number;   
     activo: boolean;
   }
