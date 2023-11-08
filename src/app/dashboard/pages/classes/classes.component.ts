@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ClassesDialogComponent } from './components/classes-dialog/classes-dialog.component';
 import { classesService } from './classes.service';
 import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-classes',
@@ -51,9 +52,22 @@ export class ClassesComponent {
   }
 
 
-  onDeleteClass(classId: number): void {
-    if (confirm(`Confirma eliminar Curso Id ${classId}?`)) {
-      this.classes$ = this.clasesService.deleteClass$(classId);
-    }
+  onDeleteClass(classId: number): void {  
+    
+    Swal.fire({
+      title: `Confirma eliminar Clase Id ${classId}?`,
+      text: '¡No podrás deshacer esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminarlo'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Lógica para eliminar el elemento
+        this.classes$ = this.clasesService.deleteClass$(classId);
+      }
+    });
+
   }
 }

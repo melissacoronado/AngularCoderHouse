@@ -1,1 +1,22 @@
-<p>courses-detail works!</p>
+<div class="main-div" *ngIf="courseDetail">
+    <span class="back"  (click)="redireccionar()">Volver Cursos</span> 
+    <br><br>
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar>       
+          <ng-template #otherImage>
+            <img src="" class="header-image">
+          </ng-template>
+        </div>
+        <mat-card-title>{{courseDetail.nombre}}</mat-card-title>
+        <mat-card-subtitle>Id: {{courseDetail.id}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <br>
+        <p>Capacidad: {{courseDetail.capacidad}}</p>
+        <p>Activo: 
+            <mat-icon *ngIf="courseDetail.activo" style="color:green;">check circle icon</mat-icon> 
+            <mat-icon *ngIf="!courseDetail.activo" style="color: red;">cancel icon</mat-icon></p>
+      </mat-card-content>
+    </mat-card>
+  </div>

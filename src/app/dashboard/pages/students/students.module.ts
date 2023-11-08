@@ -6,6 +6,7 @@ import { StudentsDialogComponent } from './components/students-dialog/students-d
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsTableComponent } from './components/students-table/students-table.component';
 import { StudentDetailComponent } from './components/student-detail/student-detail.component';
+import { StudentsRoutingModule } from './students-routing.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { StudentDetailComponent } from './components/student-detail/student-deta
   ],
   imports: [
     CommonModule,    
-    SharedModule,    
+    SharedModule, 
+    StudentsRoutingModule,   
   ],
   exports: [
     StudentsComponent

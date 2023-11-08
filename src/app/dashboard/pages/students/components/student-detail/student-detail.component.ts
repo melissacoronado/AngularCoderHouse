@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IStudent } from '../../models/students';
 import { StudentsService } from '../../students.service';
 
@@ -12,9 +12,8 @@ export class StudentDetailComponent
 {
   StudentId = 0;
   studentsDetail: IStudent | undefined;
-  studentsFiltered: IStudent[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute, private studentService: StudentsService){
+  constructor(private activatedRoute: ActivatedRoute, private studentService: StudentsService, private router: Router){
     this.StudentId = parseInt(this.activatedRoute.snapshot.params['id']);
   }
 
@@ -23,12 +22,13 @@ export class StudentDetailComponent
       next: (c) => {
         if (c) {
           this.studentsDetail =  c;
-          //.find((student: IStudent) => student.id === this.StudentId);
         }
       },
     });
   }
 
-
+  redireccionar() {
+    this.router.navigateByUrl('dashboard/students');
+  }
 
 }

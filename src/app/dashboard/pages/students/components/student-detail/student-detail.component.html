@@ -1,5 +1,5 @@
 <div class="main-div" *ngIf="studentsDetail">
-  <span class="back" routerLink="students">Volver Alumnos</span> 
+  <span class="back" (click)="redireccionar()">Volver Alumnos</span> 
   <br><br>
   <mat-card class="card">
     <mat-card-header>
@@ -14,7 +14,9 @@
     <mat-card-content>
       <br>
       <p>Email: {{studentsDetail.email}}</p>
-      <p>Cursando: {{studentsDetail.cursando}}</p>
+      <p>Cursando:
+        <mat-icon *ngIf="studentsDetail.cursando" style="color:green;">check circle icon</mat-icon> 
+        <mat-icon *ngIf="!studentsDetail.cursando" style="color: red;">cancel icon</mat-icon></p>
     </mat-card-content>
   </mat-card>
 </div>

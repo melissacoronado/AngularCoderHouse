@@ -4,7 +4,7 @@ import { ICourse } from './models/courses';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CoursesDialogComponent } from './components/courses-dialog/courses-dialog.component';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -52,9 +52,21 @@ courses$: Observable<ICourse[]>;
 
 
   onDeleteCourse(courseId: number): void {
-    if (confirm(`Confirma eliminar Curso Id ${courseId}?`)) {
-      this.courses$ = this.coursesService.deleteCourse$(courseId);
-    }
+
+    Swal.fire({
+      title: `Confirma eliminar Curso Id ${courseId}?`,
+      text: '¡No podrás deshacer esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminarlo'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Lógica para eliminar el elemento
+        this.courses$ = this.coursesService.deleteCourse$(courseId);
+      }
+    });
   }
 
   

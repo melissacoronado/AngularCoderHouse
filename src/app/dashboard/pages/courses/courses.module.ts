@@ -6,6 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CoursesDialogComponent } from './components/courses-dialog/courses-dialog.component';
 import { CoursesDetailComponent } from './components/courses-detail/courses-detail.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CoursesRoutingModule } from './courses-routing.module';
 
 
 
@@ -18,7 +19,8 @@ import { MatDialog } from '@angular/material/dialog';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    CoursesRoutingModule
   ],
   exports: [
     CoursesComponent

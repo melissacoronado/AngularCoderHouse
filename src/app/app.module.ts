@@ -8,6 +8,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { StudentsModule } from './dashboard/pages/students/students.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import { AuthRoutingModule } from './auth/auth-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CoreModule } from './core/core.module';
     CoreModule,
     DashboardModule,
     SharedModule,
+    AuthRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

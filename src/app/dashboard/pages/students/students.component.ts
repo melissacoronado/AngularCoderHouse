@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { StudentsDialogComponent } from './components/students-dialog/students-dialog.component';
 import { StudentsService } from './students.service';
 import { Observable } from 'rxjs';
-
+import Swal from 'sweetalert2';
 
 
 
@@ -43,9 +43,21 @@ export class StudentsComponent {
   }
   
   onDeleteStudent(studentId: number): void {
-    if (confirm(`Confirma eliminar Alumno Id ${studentId}?`)) {
-      this.students$ = this.studentService.deleteStudent$(studentId);
-    }
+
+    Swal.fire({
+      title: `Confirma eliminar Estudiante Id ${studentId}?`,
+      text: '¡No podrás deshacer esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminarlo'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Lógica para eliminar el elemento
+        this.students$ = this.studentService.deleteStudent$(studentId);
+      }
+    });
   }
 
   onEditStudent(studentId: number): void {

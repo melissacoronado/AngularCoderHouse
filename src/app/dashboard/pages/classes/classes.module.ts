@@ -6,6 +6,7 @@ import { ClassesDialogComponent } from './components/classes-dialog/classes-dial
 import { ClassesDetailComponent } from './components/classes-detail/classes-detail.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatDialog } from '@angular/material/dialog';
+import { ClassesRoutingModule } from './classes-routing.module';
 
 
 
@@ -19,9 +20,11 @@ import { MatDialog } from '@angular/material/dialog';
   imports: [
     CommonModule,
     SharedModule,
+    ClassesRoutingModule,
   ],
   exports: [
-    ClassesComponent
+    ClassesComponent,
+    
   ]
 })
 export class ClassesModule { 

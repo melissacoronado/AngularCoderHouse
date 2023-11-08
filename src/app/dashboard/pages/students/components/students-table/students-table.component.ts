@@ -21,7 +21,5 @@ export class StudentsTableComponent {
   editStudent = new EventEmitter();
 
   
-  detailStudent(studentId: number): void{
-    this.router.navigate(['dashboard', 'students', 'detail', studentId])
-  }
+
 }
