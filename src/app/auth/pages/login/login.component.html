@@ -5,10 +5,16 @@
     <mat-form-field class="w-100">
       <mat-label>Email</mat-label>
       <input formControlName="email" matInput type="email" />
+      <mat-error>
+        {{ loginForm.get("email")?.errors | formErrors }}
+      </mat-error>
     </mat-form-field>
     <mat-form-field class="w-100">
       <mat-label>Password</mat-label>
       <input formControlName="password" matInput type="password" />
+      <mat-error>
+        {{ loginForm.get("password")?.errors | formErrors }}
+      </mat-error>
     </mat-form-field>
   </div>
 

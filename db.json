@@ -1,0 +1,78 @@
+{
+  "users": [
+    {
+      "name": "admin",
+      "lastName": "admin",
+      "email": "fake@mail.com",
+      "password": "123456",
+      "token": "jgfdsSfvcdskjdsfDSF435324ikdsad",
+      "role": "ADMIN",
+      "id": 1
+    },
+    {
+      "name": "TOMAS",
+      "lastName": "GONZALES",
+      "email": "fake@mail.com",
+      "password": "123456",
+      "token": "gfldkgldfgjhfdjgndfsadasdasdasdas",
+      "role": "ADMIN",
+      "id": 2
+    },
+    {
+      "name": "USUARIOPRUEBA",
+      "lastName": "admin",
+      "email": "fake23@mail.com",
+      "password": "123456",
+      "token": "dfghdfgdfgdf",
+      "role": "ADMIN",
+      "id": 3
+    },
+    {
+      "name": "probando",
+      "lastName": "editado",
+      "email": "josubaez@gmail.com",
+      "id": 4
+    },
+    {
+      "name": "Melissa",
+      "lastName": "Coronado",
+      "email": "meli@mail.com",
+      "password": "123456",
+      "token": "gfldkgldfgjhfdjgndfsadasdasdasdas",
+      "role": "ADMIN",
+      "id": 5
+    }
+  ],
+  "courses": [],
+  "students": [
+    {
+      "id": 3,
+      "nombre": "Lucia",
+      "apellido": "Pinho",
+      "email": "correo2@gmail.com",
+      "cursando": "false"
+    },
+    {
+      "id": 4,
+      "nombre": "Ricardo",
+      "apellido": "Valenzuela",
+      "email": "correo3@gmail.com",
+      "cursando": "true"
+    },
+    {
+      "nombre": "Carmen J",
+      "apellido": "Gomez",
+      "email": "cjgm@mail.com",
+      "cursos": "",
+      "cursando": true,
+      "id": 926
+    },
+    {
+      "id": 907,
+      "nombre": "Sara",
+      "apellido": "Bermudez",
+      "email": "sara@mail.com",
+      "cursando": true
+    }
+  ]
+}

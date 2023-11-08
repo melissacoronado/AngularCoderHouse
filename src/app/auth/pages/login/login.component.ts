@@ -23,10 +23,10 @@ export class LoginComponent {
 
   
   
-  login(): void {
-    if (this.loginForm.invalid) {
+  login(): void { 
+    if (this.loginForm.invalid) { 
       this.loginForm.markAllAsTouched();
-    } else {
+    } else { 
       this.authService.login(this.loginForm.getRawValue());
     }
   }

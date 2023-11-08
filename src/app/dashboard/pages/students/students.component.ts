@@ -30,7 +30,7 @@ export class StudentsComponent {
     .subscribe({
       next: (result) => {
         if(result){
-          this.students$ = this.studentService.addCourse$({
+          this.students$ = this.studentService.addStudent$({
             id: Math.floor(Math.random() * (1000 - 1 + 1)) + 1,
             nombre: result.nombre,
             apellido: result.apellido,

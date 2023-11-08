@@ -4,7 +4,8 @@ import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { IUser } from '../dashboard/pages/users/models/user';
 import { Router } from '@angular/router';
 import { IAuth } from './models/IAuth';
-import { environment } from '../environment/environment.local';
+import { environment } from '../environments/environment.local';
+import Swal from 'sweetalert2';
 
 
 
@@ -30,7 +31,9 @@ import { environment } from '../environment/environment.local';
         .subscribe({
           next: (response) => {
             if (!response.length) {
-              alert('Usuario o contrasena invalidos');
+              Swal.fire({
+                title: `Usuario o contrasena invalidos`,
+              });
             } else {
               const authUser = response[0];
               this._authUser$.next(authUser);
