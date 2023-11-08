@@ -43,7 +43,38 @@
       "id": 5
     }
   ],
-  "courses": [],
+  "courses": [
+    {
+      "nombre": "Angular 1",
+      "capacidad": 100,
+      "activo": "true",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "nombre": "React",
+      "capacidad": 100,
+      "activo": "false"
+    },
+    {
+      "id": 3,
+      "nombre": "Backend",
+      "capacidad": 100,
+      "activo": "true"
+    },
+    {
+      "id": 4,
+      "nombre": "Inglés para desarrolladores",
+      "capacidad": 30,
+      "activo": "false"
+    },
+    {
+      "id": 5,
+      "nombre": "Seguridad informática",
+      "capacidad": 80,
+      "activo": "true"
+    }
+  ],
   "students": [
     {
       "id": 3,
