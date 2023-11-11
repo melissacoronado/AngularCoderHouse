@@ -8,12 +8,6 @@ import { environment } from 'src/app/environments/environment.local';
 
 @Injectable({ providedIn: 'root' })
 export class StudentsService {
-  students: IStudent[] = [
-    {id: 1, nombre: 'Maria', apellido: 'Perez', email: 'correo@gmail.com', cursando: true },     
-    {id: 2, nombre: 'Luis', apellido: 'Gómez', email: 'correo1@gmail.com', cursando: true},
-    {id: 3, nombre: 'Laura', apellido: 'Pinho', email: 'correo2@gmail.com', cursando: false},
-    {id: 4, nombre: 'Ricardo', apellido: 'Valenzuela', email: 'correo3@gmail.com', cursando: true},
-  ];
 
   constructor(private httpClient: HttpClient) {}
 
