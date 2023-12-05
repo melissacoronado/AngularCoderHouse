@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable, concatMap, of } from "rxjs";
 import { IClasses } from "./Models/classes";
+import { environment } from "src/app/environments/environment.local";
+import { HttpClient } from "@angular/common/http";
 
 
 
@@ -8,65 +10,39 @@ import { IClasses } from "./Models/classes";
     providedIn: 'root'
 })
 export class classesService{
-    courses: IClasses[] = 
-    [
-        {
-          comision: 1,
-          diasClases: ['Lunes', 'Miércoles'],
-          fechaInicio: '2023-01-01',
-          fechaFin: '2023-06-30',
-          courseId: 101
-        },
-        {
-          comision: 2,
-          diasClases: ['Martes', 'Jueves'],
-          fechaInicio: '2023-02-01',
-          fechaFin: '2023-07-31',
-          courseId: 102
-        },
-        {
-          comision: 3,
-          diasClases: ['Lunes', 'Miércoles'],
-          fechaInicio: '2023-03-01',
-          fechaFin: '2023-08-31',
-          courseId: 103
-        },
-        {
-          comision: 4,
-          diasClases: ['Viernes'],
-          fechaInicio: '2023-04-01',
-          fechaFin: '2023-09-30',
-          courseId: 104
-        },
-        {
-          comision: 5,
-          diasClases: ['Martes', 'Jueves'],
-          fechaInicio: '2023-05-01',
-          fechaFin: '2023-10-31',
-          courseId: 105
-        }
-      ];
+  constructor(private httpClient: HttpClient) {}
+
 
     getClasses$() : Observable<IClasses[]>{
-        return of(this.courses)
+        //return of(this.courses)
+        return this.httpClient.get<IClasses[]>(`${environment.baseUrl}/classes`);
     }
 
     addClass$(payload: IClasses): Observable<IClasses[]>{
-        this.courses.push(payload);
-        return of([...this.courses]);
+      return this.httpClient
+      .post<IClasses>(`${environment.baseUrl}/classes`, payload)
+      .pipe(concatMap(() => this.getClasses$()));
     }
 
     editClass$(id: number, payload: IClasses): Observable<IClasses[]>{ 
-        return of(this.courses.map((c) => (c.comision === id ? { ...c, ...payload } : c)));
+      return this.httpClient
+      .put<IClasses>(`${environment.baseUrl}/classes/${id}`, payload)
+      .pipe(concatMap(() => this.getClasses$()));
     }
 
     getClassById$(classId: number): Observable<IClasses | undefined>{ 
-        return of(this.courses.find((c) => c.comision === classId));
+      return this.httpClient.get<IClasses>(`${environment.baseUrl}/classes/${classId}`);
+    }
+
+    getClassesByCursoId$(cursoId: number): Observable<IClasses[]>{ 
+      return this.httpClient.get<IClasses[]>(`${environment.baseUrl}/classes?courseId=${cursoId}`);
     }
 
     deleteClass$(classId: number): Observable<IClasses[]>{ 
-        this.courses = this.courses.filter((c) => c.comision !== classId);
-        return of(this.courses);
+      return this.httpClient
+      .delete<IClasses>(`${environment.baseUrl}/classes/${classId}`)
+      .pipe(concatMap(() => this.getClasses$()));
       }
+      
 
 }

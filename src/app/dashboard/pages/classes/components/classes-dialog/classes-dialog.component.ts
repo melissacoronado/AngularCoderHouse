@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { classesService } from '../../classes.service';
 import { ICourse } from '../../../courses/models/courses';
+import { courseService } from '../../../courses/courses.service';
+import { Observable } from 'rxjs';
+import { ISemana } from '../../Models/ISemana';
 
 @Component({
   selector: 'app-classes-dialog',
@@ -12,15 +15,22 @@ import { ICourse } from '../../../courses/models/courses';
 export class ClassesDialogComponent {
   classesForm: FormGroup;
 
-  daysOfWeek: FormGroup;
-
-  //reemplazar por llamada al servicio de cursos
-  cursosList: ICourse[] = [{id: 1, nombre: 'Angular', capacidad: 100, activo: false}, {id: 2, nombre: 'React', capacidad: 100, activo: false}];
-
+  cursosList$: Observable<ICourse[]>;
+  curso: ISemana[] = [
+    { dia: 'Lunes', seleccionado: false },
+    { dia: 'Martes', seleccionado: false },
+    { dia: 'Miércoles', seleccionado: false },
+    { dia: 'Jueves', seleccionado: false },
+    { dia: 'Viernes', seleccionado: false },
+    { dia: 'Sábado', seleccionado: false },
+    { dia: 'Domingo', seleccionado: false },
+  ]
+  
   constructor(
     private formBuilder: FormBuilder,
     private matDialogRef: MatDialogRef<ClassesDialogComponent>,
     private classService: classesService,
+    private coursesService: courseService,
 
     // RECIBO LA DATA
     @Inject(MAT_DIALOG_DATA) public classId?: number
@@ -35,6 +45,8 @@ export class ClassesDialogComponent {
       }
     );
     
+    this.cursosList$ = coursesService.getCourses$();
+
 
     if (classId) {
       this.classService.getClassById$(classId).subscribe({
@@ -46,32 +58,11 @@ export class ClassesDialogComponent {
         },
       });
     }
-
-
-    this.daysOfWeek = this.formBuilder.group({
-      lunes: [false],
-      martes: [false],
-      miercoles: [false],
-      jueves: [false],
-      viernes: [false],
-      sabado: [false]
-    });
-
-    //this.daysOfWeek.setValidators(this.alMenosUnoSeleccionado);
+    
     
   }
 
-  alMenosUnoSeleccionado(form: FormGroup) {
-    const diasSemana = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
-
-    const alMenosUnoSeleccionado = diasSemana.some(dia => form.get(dia)?.value);
-
-    return alMenosUnoSeleccionado ? null : { ningunDiaSeleccionado: true };
-  }
-
-  
-
-  onSubmit(): void { 
+ onSubmit(): void { 
     if (this.classesForm.invalid) {
       this.classesForm.markAllAsTouched();
     } else { 

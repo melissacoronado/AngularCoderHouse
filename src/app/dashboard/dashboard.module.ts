@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { DashboardRoutingModule } from './dashboard-routing.modules';
+import { HomeComponent } from './pages/home/home.component';
 
 
 
@@ -15,7 +16,8 @@ import { DashboardRoutingModule } from './dashboard-routing.modules';
   declarations: [
     DashboardComponent,
     ToolbarComponent,
-    SidenavComponent
+    SidenavComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

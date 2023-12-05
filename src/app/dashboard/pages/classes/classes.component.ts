@@ -25,7 +25,7 @@ export class ClassesComponent {
       next: (result) => {
         if(result){
           this.classes$ = this.clasesService.addClass$({
-            comision: Math.floor(Math.random() * (1000 - 1 + 1)) + 1,
+            id: Math.floor(Math.random() * (1000 - 1 + 1)) + 1,
             diasClases: ['Miercoles', 'Jueves'],
             fechaInicio: '2024-05-01',
             fechaFin: '2024-07-31',

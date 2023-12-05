@@ -3,22 +3,25 @@
 <div mat-dialog-content>   
       <form [formGroup]="classesForm">        
         <div class="row">
-          <div class="col-6">
-            <mat-label>Dias Clases:</mat-label>
 
-            <form [formGroup]="daysOfWeek">
-              <mat-checkbox formControlName="lunes">Lunes</mat-checkbox>
-              <mat-checkbox formControlName="martes">Martes</mat-checkbox>
-              <mat-checkbox formControlName="miercoles">Miércoles</mat-checkbox>
-              <mat-checkbox formControlName="jueves">Jueves</mat-checkbox>
-              <mat-checkbox formControlName="viernes">Viernes</mat-checkbox>
-              <mat-checkbox formControlName="sabado">Sábado</mat-checkbox>
-            </form>
-              <mat-error>
-                {{ classesForm.get("diasClases")?.errors | formErrors }}
-              </mat-error>
-           
-          </div>
+
+          <div class="col-6">
+            <mat-form-field class="w-100"> 
+                <mat-label>Dias Clases:</mat-label>
+                <mat-checkbox *ngFor="let semana of curso"
+                  class="example-margin"
+                  [(ngModel)]="semana.seleccionado">
+                  {{ semana.dia }}
+              </mat-checkbox>
+
+                <!--input formControlName="courseId" matInput /-->
+                <mat-error>
+                  {{ classesForm.get("diasClases")?.errors | formErrors }}
+                </mat-error>
+              </mat-form-field>
+        </div>
+
+
             <div class="col-6">
               <mat-form-field class="w-100">
                 <mat-label>Fecha Inicio</mat-label>  
@@ -47,10 +50,10 @@
                 <mat-form-field class="w-100"> 
                     <mat-label>Curso - Selecciona una opción</mat-label>
                     <mat-select>
-                        <mat-option *ngFor="let curso of cursosList" [value]="curso.id">{{ curso.nombre }}</mat-option>
+                        <mat-option *ngFor="let curso of (cursosList$ | async)" [value]="curso.id">{{ curso.nombre }}</mat-option>
                     </mat-select>
 
-                    <input formControlName="courseId" matInput />
+                    <!--input formControlName="courseId" matInput /-->
                     <mat-error>
                       {{ classesForm.get("courseId")?.errors | formErrors }}
                     </mat-error>

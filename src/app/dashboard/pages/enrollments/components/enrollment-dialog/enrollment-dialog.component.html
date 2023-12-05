@@ -1,0 +1,56 @@
+<h1 mat-dialog-title>  Inscripciones     </h1>
+
+<div mat-dialog-content>   
+      <form [formGroup]="enrollmentsForm">        
+        <div class="row">
+
+
+            <div class="col-6">
+                <mat-form-field class="w-100"> 
+                    <mat-label>Curso - Selecciona una opción</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let curso of (cursosList$ | async)" [value]="curso.id">{{ curso.nombre }}</mat-option>
+                    </mat-select>
+
+                    <!--input formControlName="courseId" matInput /-->
+                    <mat-error>
+                      {{ enrollmentsForm.get("courseId")?.errors | formErrors }}
+                    </mat-error>
+                  </mat-form-field>
+            </div>
+
+
+            <div class="col-6">
+                <mat-form-field class="w-100"> 
+                    <mat-label>Clases - Selecciona una opción</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let clase of (classesList$ | async)" [value]="clase.id">{{ clase.diasClases }}</mat-option>
+                    </mat-select>
+
+                    <!--input formControlName="courseId" matInput /-->
+                    <mat-error>
+                      {{ enrollmentsForm.get("classesid")?.errors | formErrors }}
+                    </mat-error>
+                  </mat-form-field>
+            </div>    
+            <div class="col-6">
+                <mat-form-field class="w-100">
+                  <mat-label>Alumno</mat-label>
+                  <input matInput formControlName="student">                 
+                  <mat-error>
+                    {{ enrollmentsForm.get("student")?.errors | formErrors }}
+                  </mat-error>
+                </mat-form-field>
+              </div>              
+            
+        </div>
+         
+      </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button cdkFocusInitial color="primary">Guardar</button>
+  </div>
+
+
+

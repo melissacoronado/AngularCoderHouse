@@ -1,0 +1,21 @@
+<div class="main-div" *ngIf="usersDetail">
+    <span class="back" (click)="redireccionar()">Volver Usuarios</span> 
+    <br><br>
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar>       
+          <ng-template #otherImage>
+            <img src="" class="header-image">
+          </ng-template>
+        </div>
+        <mat-card-title>{{usersDetail | fullname}}</mat-card-title>
+        <mat-card-subtitle>Id: {{usersDetail.id}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <br>
+        <p>Email: {{usersDetail.email}}</p>
+        <p>Role:  {{usersDetail.role}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

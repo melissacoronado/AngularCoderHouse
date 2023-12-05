@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IClasses } from '../../Models/classes';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-classes-table',
@@ -7,7 +8,8 @@ import { IClasses } from '../../Models/classes';
   styleUrls: ['./classes-table.component.scss']
 })
 export class ClassesTableComponent {
-  displayedColumns: string[] = ['comision', 'diasClases', 'fechaInicio', 'fechaFin', 'courseId', 'acciones'];
+  displayedColumns: string[] = ['id', 'diasClases', 'fechaInicio', 'fechaFin', 'courseId', 'acciones'];
+
 
 @Input()
 dataSource : IClasses[] = [];

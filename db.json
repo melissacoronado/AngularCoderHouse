@@ -1,46 +1,49 @@
 {
   "users": [
     {
-      "name": "admin",
-      "lastName": "admin",
-      "email": "fake@mail.com",
+      "nombre": "admin",
+      "apellido": "admin",
+      "email": "admin@mail.com",
       "password": "123456",
       "token": "jgfdsSfvcdskjdsfDSF435324ikdsad",
-      "role": "ADMIN",
+      "role": "Admin",
       "id": 1
     },
     {
-      "name": "TOMAS",
-      "lastName": "GONZALES",
+      "nombre": "TOMAS",
+      "apellido": "GONZALES",
       "email": "fake@mail.com",
       "password": "123456",
       "token": "gfldkgldfgjhfdjgndfsadasdasdasdas",
-      "role": "ADMIN",
+      "role": "User",
       "id": 2
     },
     {
-      "name": "USUARIOPRUEBA",
-      "lastName": "admin",
-      "email": "fake23@mail.com",
-      "password": "123456",
-      "token": "dfghdfgdfgdf",
-      "role": "ADMIN",
-      "id": 3
-    },
-    {
-      "name": "probando",
-      "lastName": "editado",
-      "email": "josubaez@gmail.com",
-      "id": 4
-    },
-    {
-      "name": "Melissa",
-      "lastName": "Coronado",
+      "nombre": "Melissa",
+      "apellido": "Coronado",
       "email": "meli@mail.com",
       "password": "123456",
       "token": "gfldkgldfgjhfdjgndfsadasdasdasdas",
-      "role": "ADMIN",
-      "id": 5
+      "role": "Admin",
+      "id": 3
+    },
+    {
+      "id": 110,
+      "nombre": "Prueba",
+      "apellido": "Prueba",
+      "email": "prueba@test.com.ar",
+      "password": "123456",
+      "token": "gfldkgldfgjhfdjgndfsadasdasdasdas",
+      "role": "User"
+    },
+    {
+      "id": 282,
+      "nombre": "uno",
+      "apellido": "dos",
+      "email": "correo@net.co.ar",
+      "token": "Wou2FHblPQumUpsSJr6RoF6JdjDeFY",
+      "password": "123456",
+      "role": "Admin"
     }
   ],
   "courses": [
@@ -73,6 +76,12 @@
       "nombre": "Seguridad informática",
       "capacidad": 80,
       "activo": "true"
+    },
+    {
+      "id": 842,
+      "nombre": "aaa",
+      "capacidad": "45",
+      "activo": ""
     }
   ],
   "students": [
@@ -104,6 +113,64 @@
       "apellido": "Bermudez",
       "email": "sara@mail.com",
       "cursando": true
+    },
+    {
+      "id": 935,
+      "nombre": "meli",
+      "apellido": "coronado g",
+      "email": "correo@gmail.com",
+      "cursando": ""
+    }
+  ],
+  "enrollments": [
+    {
+      "id": 1,
+      "studentId": 3,
+      "courseId": 1,
+      "classId": 1
+    },
+    {
+      "id": 2,
+      "studentId": 3,
+      "courseId": 4,
+      "classId": 4
+    }   
+  ],
+  "classes":[
+    {
+      "id": 1,
+      "diasClases": ["Lunes", "Miércoles"],
+      "fechaInicio": "2023-01-01",
+      "fechaFin": "2023-06-30",
+      "courseId": 1
+    },
+    {
+      "id": 2,
+      "diasClases": ["Martes", "Jueves"],
+      "fechaInicio": "2023-02-01",
+      "fechaFin": "2023-07-31",
+      "courseId": 2
+    },
+    {
+      "id": 3,
+      "diasClases": ["Lunes", "Miércoles"],
+      "fechaInicio": "2023-03-01",
+      "fechaFin": "2023-08-31",
+      "courseId": 3
+    },
+    {
+      "id": 4,
+      "diasClases": ["Viernes"],
+      "fechaInicio": "2023-04-01",
+      "fechaFin": "2023-09-30",
+      "courseId": 4
+    },
+    {
+      "id": 5,
+      "diasClases": ["Martes", "Jueves"],
+      "fechaInicio": "2023-05-01",
+      "fechaFin": "2023-10-31",
+      "courseId": 5
     }
   ]
 }

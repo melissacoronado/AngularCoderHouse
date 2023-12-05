@@ -20,7 +20,7 @@ export class courseService{
     addCourse$(payload: ICourse): Observable<ICourse[]>{
         return this.httpClient
       .post<ICourse>(`${environment.baseUrl}/courses`, payload)
-      .pipe(concatMap(() => this.addCourse$(payload)));
+      .pipe(concatMap(() => this.getCourses$()));
     }
 
     editCourse$(id: number, payload: ICourse): Observable<ICourse[]>{ 

@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 
 export const dashboardGuard: CanActivateFn = (route, state) => {
 
-const router = inject(Router);
+  const router = inject(Router);
   const authService = inject(AuthService);
 
   return authService

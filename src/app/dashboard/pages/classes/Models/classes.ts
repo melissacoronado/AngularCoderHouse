@@ -1,5 +1,5 @@
 export interface IClasses {
-    comision: number;
+    id: number;
     diasClases: string[]; 
     fechaInicio: string;   
     fechaFin: string;

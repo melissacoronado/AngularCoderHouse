@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, of } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { IUser } from '../dashboard/pages/users/models/user';
 import { Router } from '@angular/router';
 import { IAuth } from './models/IAuth';
 import { environment } from '../environments/environment.local';
 import Swal from 'sweetalert2';
+import { Store } from '@ngrx/store';
+import { AuthActions } from '../store/auth/auth.actions';
+import { selectAuthUser } from '../store/auth/auth.selectors';
 
 
 
@@ -16,12 +19,19 @@ import Swal from 'sweetalert2';
     providedIn: 'root',
   })
   export class AuthService {
-    private _authUser$ = new BehaviorSubject<IUser | null>(null);
+    //private _authUser$ = new BehaviorSubject<IUser | null>(null);  
+    public authUser$ = this.store.select(selectAuthUser) //this._authUser$.asObservable();
+
+
   
-    public authUser$ = this._authUser$.asObservable();
+    constructor(private httpClient: HttpClient, private router: Router, private store: Store) {}
   
-    constructor(private httpClient: HttpClient, private router: Router) {}
-  
+    private handleAuthUser(authUser: IUser): void {
+      // this._authUser$.next(authUser);
+      this.store.dispatch(AuthActions.setAuthUser({ data: authUser }));
+      localStorage.setItem('token', authUser.token);
+    }
+
     login(payload: IAuth): void {
 
       this.httpClient
@@ -36,8 +46,10 @@ import Swal from 'sweetalert2';
               });
             } else {
               const authUser = response[0];
-              this._authUser$.next(authUser);
-              localStorage.setItem('token', authUser.token);
+
+              this.handleAuthUser(authUser);
+              //this._authUser$.next(authUser);
+              //localStorage.setItem('token', authUser.token);
               this.router.navigate(['/dashboard/home']);
             }
           },
@@ -58,8 +70,9 @@ import Swal from 'sweetalert2';
               return false;
             } else {
               const authUser = users[0];
-              this._authUser$.next(authUser);
-              localStorage.setItem('token', authUser.token);
+              //this._authUser$.next(authUser);
+              //localStorage.setItem('token', authUser.token);
+              this.handleAuthUser(authUser);
               return true;
             }
           })
@@ -67,7 +80,8 @@ import Swal from 'sweetalert2';
     }
   
     logout(): void {
-      this._authUser$.next(null);
+      //this._authUser$.next(null);
+      this.store.dispatch(AuthActions.resetState());
       localStorage.removeItem('token');
       this.router.navigate(['/auth/login']);
     }

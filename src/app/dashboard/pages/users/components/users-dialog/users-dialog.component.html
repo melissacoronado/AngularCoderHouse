@@ -1,0 +1,64 @@
+<h1 mat-dialog-title>  Usuarios     </h1>
+
+<div mat-dialog-content>   
+      <form [formGroup]="usersForm">        
+        <div class="row">
+            <div class="col-6">
+              <mat-form-field class="w-100">
+                <mat-label>Nombre</mat-label>
+                <input formControlName="nombre" matInput />
+                <mat-error>
+                  {{ usersForm.get("nombre")?.errors | formErrors }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-form-field class="w-100">
+                <mat-label>Apellido</mat-label>
+                <input formControlName="apellido" matInput />
+                <mat-error>
+                  {{ usersForm.get("apellido")?.errors | formErrors }}
+                </mat-error>
+              </mat-form-field>
+            </div>  
+            
+            <div class="col-8">
+              <mat-form-field class="w-100">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" matInput />
+                <mat-error>
+                  {{ usersForm.get("email")?.errors | formErrors }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+            
+            <div class="col-8">
+                <mat-form-field class="w-100">
+                  <mat-label>Password</mat-label>
+                  <input type="password" formControlName="password" matInput />
+                  <mat-error>
+                    {{ usersForm.get("password")?.errors | formErrors }}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col-6">
+                <mat-form-field class="w-100"> 
+                    <mat-label>Role - Selecciona una opción</mat-label>
+                    <mat-select formControlName="role">
+                        <mat-option *ngFor="let role of rolesList" [value]="role.nombre">{{ role.nombre }}</mat-option>
+                    </mat-select>
+                    <mat-error>
+                      {{ usersForm.get("role")?.errors | formErrors }}
+                    </mat-error>
+                  </mat-form-field>
+            </div>
+        </div>
+         
+      </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button (click)="onSubmit()" cdkFocusInitial color="primary">Guardar</button>
+  </div>
+

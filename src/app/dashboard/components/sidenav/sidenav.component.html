@@ -1,5 +1,12 @@
+<div>
+  <p>
+    {{ fullName$ | async }}
+    <br />
+    {{ email$ | async }}
+  </p>
+</div>
 <mat-nav-list>
-    <mat-list-item>
+    <mat-list-item routerLink="home">
       <a>CoderHouse</a>
     </mat-list-item>
   
@@ -12,8 +19,15 @@
     <mat-list-item routerLink="students">
       <a>Alumnos</a>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item routerLink="enrollments">
       <a>Inscripciones</a>
+    </mat-list-item>
+    <mat-list-item  routerLink="users">
+      <a>Usuarios</a>
+    </mat-list-item>
+
+    <mat-list-item (click)="logout()">
+      <a>Cerrar sesión</a>
     </mat-list-item>
     
   </mat-nav-list>
