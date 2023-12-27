@@ -115,13 +115,6 @@
       "cursando": true
     },
     {
-      "id": 935,
-      "nombre": "meli",
-      "apellido": "coronado g",
-      "email": "correo@gmail.com",
-      "cursando": ""
-    },
-    {
       "id": 937,
       "nombre": "Lucila",
       "apellido": "Fiorito",
@@ -143,16 +136,16 @@
       "id": 3
     },
     {
-      "courseId": 3,
-      "classId": 3,
-      "studentId": 935,
-      "id": 4
-    },
-    {
       "courseId": 4,
       "classId": 4,
+      "studentId": 926,
+      "id": 6
+    },
+    {
+      "courseId": 2,
+      "classId": 65,
       "studentId": 4,
-      "id": 5
+      "id": 7
     }
   ],
   "classes": [

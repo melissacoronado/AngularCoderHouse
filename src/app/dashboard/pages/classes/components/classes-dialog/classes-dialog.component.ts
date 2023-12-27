@@ -100,12 +100,6 @@ export class ClassesDialogComponent {
 
 
  onSubmit(): void { 
-  //console.log(this.getSelectedDays())
-//console.log(this.getSelectedDays().length)
- /* const controlsWithErrors = Object.keys(this.classesForm.controls).filter(
-    (control) => this.classesForm.controls[control].invalid );
-  console.log('Controles con errores:', controlsWithErrors);*/
-
     if (this.classesForm.invalid || this.getSelectedDays().length == 0) {
       this.classesForm.markAllAsTouched();
     } else { 

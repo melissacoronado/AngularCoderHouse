@@ -59,8 +59,6 @@ export class ClassesComponent {
       .subscribe({
         next: (result) => {
           if (!!result) { 
-            console.log(classId); 
-            console.log(result);
             this.classes$ = this.clasesService.editClass$(classId, {
               id: result.id,
               diasClases: this.getSelectedDays(result),

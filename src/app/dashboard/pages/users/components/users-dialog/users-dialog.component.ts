@@ -47,10 +47,9 @@ export class UsersDialogComponent {
   }
 
   onSubmit(): void {
-    console.log(this.usersForm.invalid);
     if (this.usersForm.invalid) {
       this.usersForm.markAllAsTouched();
-    } else { console.log(1);
+    } else {
       this.matDialogRef.close(this.usersForm.value);
     }
   }

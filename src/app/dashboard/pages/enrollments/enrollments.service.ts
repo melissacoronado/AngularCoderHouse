@@ -38,9 +38,10 @@ export class enrollmentsService{
       return this.httpClient.get<IEnrollments[]>(`${environment.baseUrl}/enrollments?classId=${comisionsId}&_expand=course&_expand=class&_expand=student`);
     }
 
-    deletetEnrollments$(enrollmentId: number): Observable<IEnrollments[]>{ 
+    deletetEnrollments$(id: number): Observable<IEnrollments[]>
+    { 
       return this.httpClient
-      .delete<IEnrollments>(`${environment.baseUrl}/enrollments/${enrollmentId}`)
+      .delete<IEnrollments>(`${environment.baseUrl}/enrollments/${id}`)
       .pipe(concatMap(() => this.getEnrollments$()));
 
       }

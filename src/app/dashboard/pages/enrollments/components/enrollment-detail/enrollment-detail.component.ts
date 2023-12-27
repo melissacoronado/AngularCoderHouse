@@ -24,7 +24,6 @@ export class EnrollemntDetailComponent {
       next: (c) => {
         if (c) {
           this.enrollmentDetail =  c;
-          console.log(this.enrollmentDetail);
         }
       },
     });
