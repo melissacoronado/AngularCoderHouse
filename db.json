@@ -12,9 +12,9 @@
     {
       "nombre": "TOMAS",
       "apellido": "GONZALES",
-      "email": "fake@mail.com",
-      "password": "123456",
-      "token": "gfldkgldfgjhfdjgndfsadasdasdasdas",
+      "email": "tomas@mail.com",
+      "password": "78910",
+      "token": "gfldkgldfgjhfdjgnd1234dasdasdasdas",
       "role": "User",
       "id": 2
     },
@@ -23,7 +23,7 @@
       "apellido": "Coronado",
       "email": "meli@mail.com",
       "password": "123456",
-      "token": "gfldkgldfgjhfdjgndfsadasdasdasdas",
+      "token": "gfldkgl78900hfdjgndfsadasdasdasdas",
       "role": "Admin",
       "id": 3
     },
@@ -32,7 +32,7 @@
       "nombre": "Prueba",
       "apellido": "Prueba",
       "email": "prueba@test.com.ar",
-      "password": "123456",
+      "password": "568971",
       "token": "gfldkgldfgjhfdjgndfsadasdasdasdas",
       "role": "User"
     },
@@ -40,9 +40,9 @@
       "id": 282,
       "nombre": "uno",
       "apellido": "dos",
-      "email": "correo@net.co.ar",
+      "email": "unodos@net.co.ar",
       "token": "Wou2FHblPQumUpsSJr6RoF6JdjDeFY",
-      "password": "123456",
+      "password": "741096",
       "role": "Admin"
     }
   ],
@@ -120,57 +120,119 @@
       "apellido": "coronado g",
       "email": "correo@gmail.com",
       "cursando": ""
+    },
+    {
+      "id": 937,
+      "nombre": "Lucila",
+      "apellido": "Fiorito",
+      "email": "correo@gmail.com",
+      "cursando": ""
     }
   ],
   "enrollments": [
-    {
-      "id": 1,
-      "studentId": 3,
-      "courseId": 1,
-      "classId": 1
-    },
     {
       "id": 2,
       "studentId": 3,
       "courseId": 4,
       "classId": 4
-    }   
-  ],
-  "classes":[
-    {
-      "id": 1,
-      "diasClases": ["Lunes", "Miércoles"],
-      "fechaInicio": "2023-01-01",
-      "fechaFin": "2023-06-30",
-      "courseId": 1
     },
     {
+      "courseId": 842,
+      "classId": 214,
+      "studentId": 937,
+      "id": 3
+    },
+    {
+      "courseId": 3,
+      "classId": 3,
+      "studentId": 935,
+      "id": 4
+    },
+    {
+      "courseId": 4,
+      "classId": 4,
+      "studentId": 4,
+      "id": 5
+    }
+  ],
+  "classes": [
+    {
       "id": 2,
-      "diasClases": ["Martes", "Jueves"],
+      "diasClases": [
+        "martes",
+        "jueves"
+      ],
       "fechaInicio": "2023-02-01",
       "fechaFin": "2023-07-31",
       "courseId": 2
     },
     {
       "id": 3,
-      "diasClases": ["Lunes", "Miércoles"],
+      "diasClases": [
+        "lunes",
+        "miercoles"
+      ],
       "fechaInicio": "2023-03-01",
       "fechaFin": "2023-08-31",
       "courseId": 3
     },
     {
       "id": 4,
-      "diasClases": ["Viernes"],
+      "diasClases": [
+        "viernes"
+      ],
       "fechaInicio": "2023-04-01",
       "fechaFin": "2023-09-30",
       "courseId": 4
     },
     {
       "id": 5,
-      "diasClases": ["Martes", "Jueves"],
+      "diasClases": [
+        "martes",
+        "jueves"
+      ],
       "fechaInicio": "2023-05-01",
       "fechaFin": "2023-10-31",
       "courseId": 5
+    },
+    {
+      "id": 288,
+      "diasClases": [
+        "miercoles",
+        "jueves"
+      ],
+      "fechaInicio": "2024-05-01",
+      "fechaFin": "2024-07-31",
+      "courseId": 1
+    },
+    {
+      "id": 58,
+      "diasClases": [
+        "miercoles",
+        "jueves"
+      ],
+      "fechaInicio": "2024-05-01",
+      "fechaFin": "2024-07-31",
+      "courseId": 1
+    },
+    {
+      "diasClases": [
+        "viernes"
+      ],
+      "fechaInicio": "2024-01-02T03:00:00.000Z",
+      "fechaFin": "2024-01-31T03:00:00.000Z",
+      "courseId": 842,
+      "id": 214
+    },
+    {
+      "diasClases": [
+        "lunes",
+        "martes"
+      ],
+      "fechaInicio": "2023-12-23T03:00:00.000Z",
+      "fechaFin": "2023-12-31T03:00:00.000Z",
+      "courseId": 2,
+      "id": 65
     }
   ]
 }

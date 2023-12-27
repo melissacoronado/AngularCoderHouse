@@ -27,7 +27,6 @@ import { selectAuthUser } from '../store/auth/auth.selectors';
     constructor(private httpClient: HttpClient, private router: Router, private store: Store) {}
   
     private handleAuthUser(authUser: IUser): void {
-      // this._authUser$.next(authUser);
       this.store.dispatch(AuthActions.setAuthUser({ data: authUser }));
       localStorage.setItem('token', authUser.token);
     }
@@ -44,9 +43,10 @@ import { selectAuthUser } from '../store/auth/auth.selectors';
               Swal.fire({
                 title: `Usuario o contrasena invalidos`,
               });
-            } else {
+            } else { 
+              //console.log( response);
               const authUser = response[0];
-
+              //console.log(authUser);
               this.handleAuthUser(authUser);
               //this._authUser$.next(authUser);
               //localStorage.setItem('token', authUser.token);
@@ -60,6 +60,7 @@ import { selectAuthUser } from '../store/auth/auth.selectors';
     }
   
     verifyToken(): Observable<boolean> {
+
       return this.httpClient
         .get<IUser[]>(
           `${environment.baseUrl}/users?token=${localStorage.getItem('token')}`
@@ -83,6 +84,7 @@ import { selectAuthUser } from '../store/auth/auth.selectors';
       //this._authUser$.next(null);
       this.store.dispatch(AuthActions.resetState());
       localStorage.removeItem('token');
+
       this.router.navigate(['/auth/login']);
     }
 

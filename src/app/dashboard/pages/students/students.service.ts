@@ -38,6 +38,11 @@ export class StudentsService {
       .pipe(concatMap(() => this.getStudents$()));
   }
 
+  searchStudent(term: string): Observable<IStudent[]> {
+    const url = `${environment.baseUrl}/students?q=${term}`;
+    return this.httpClient.get<IStudent[]>(url);
+  }
+
   //-----
 }
 

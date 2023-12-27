@@ -30,15 +30,20 @@ export class enrollmentsService{
       .pipe(concatMap(() => this.getEnrollments$()));
     }
 
-    gettEnrollmentsById$(classId: number): Observable<IEnrollments | undefined>{ 
-      return this.httpClient.get<IEnrollments>(`${environment.baseUrl}/enrollments/${classId}`);
+    gettEnrollmentsById$(enrollmentId: number): Observable<IEnrollments | undefined>{ 
+      return this.httpClient.get<IEnrollments>(`${environment.baseUrl}/enrollments/${enrollmentId}`);
     }
 
-    deletetEnrollments$(classId: number): Observable<IEnrollments[]>{ 
+    gettEnrollmentsByComisionId$(comisionsId: number): Observable<IEnrollments[] | undefined>{ 
+      return this.httpClient.get<IEnrollments[]>(`${environment.baseUrl}/enrollments?classId=${comisionsId}&_expand=course&_expand=class&_expand=student`);
+    }
+
+    deletetEnrollments$(enrollmentId: number): Observable<IEnrollments[]>{ 
       return this.httpClient
-      .delete<IEnrollments>(`${environment.baseUrl}/enrollments/${classId}`)
+      .delete<IEnrollments>(`${environment.baseUrl}/enrollments/${enrollmentId}`)
       .pipe(concatMap(() => this.getEnrollments$()));
+
       }
-      
+
 
 }

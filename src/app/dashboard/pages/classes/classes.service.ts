@@ -15,7 +15,7 @@ export class classesService{
 
     getClasses$() : Observable<IClasses[]>{
         //return of(this.courses)
-        return this.httpClient.get<IClasses[]>(`${environment.baseUrl}/classes`);
+        return this.httpClient.get<IClasses[]>(`${environment.baseUrl}/classes?_expand=course`);
     }
 
     addClass$(payload: IClasses): Observable<IClasses[]>{
@@ -31,10 +31,11 @@ export class classesService{
     }
 
     getClassById$(classId: number): Observable<IClasses | undefined>{ 
-      return this.httpClient.get<IClasses>(`${environment.baseUrl}/classes/${classId}`);
+      
+      return this.httpClient.get<IClasses>(`${environment.baseUrl}/classes/${classId}?_expand=course`);
     }
 
-    getClassesByCursoId$(cursoId: number): Observable<IClasses[]>{ 
+    getClassesByCursoId$(cursoId: number): Observable<IClasses[] | undefined>{ 
       return this.httpClient.get<IClasses[]>(`${environment.baseUrl}/classes?courseId=${cursoId}`);
     }
 

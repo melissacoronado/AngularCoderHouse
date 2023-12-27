@@ -38,10 +38,10 @@
           <button [routerLink]="element.id" mat-icon-button color="accent">
             <mat-icon>visibility</mat-icon>
           </button>
-          <button mat-icon-button color="primary" (click)="editCourse.emit(element.id)">
+          <button mat-icon-button color="primary" [disabled]="(userRole$ | async) !== 'Admin'" (click)="editCourse.emit(element.id)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn" (click)="deleteCourse.emit(element.id)">
+          <button mat-icon-button color="warn" [disabled]="(userRole$ | async) !== 'Admin'" (click)="deleteCourse.emit(element.id)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>

@@ -10,6 +10,7 @@ import { EnrollmentsComponent } from './enrollments.component';
 import { EnrollmentsTableComponent } from './components/enrollments-table/enrollments-table.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EnrollmentDialogComponent } from './components/enrollment-dialog/enrollment-dialog.component';
+import { EnrollemntDetailComponent } from './components/enrollment-detail/enrollment-detail.component';
 
 
 
@@ -18,6 +19,7 @@ import { EnrollmentDialogComponent } from './components/enrollment-dialog/enroll
     EnrollmentsComponent,
     EnrollmentsTableComponent,
     EnrollmentDialogComponent,
+    EnrollemntDetailComponent,
   ],
   imports: [
     CommonModule,

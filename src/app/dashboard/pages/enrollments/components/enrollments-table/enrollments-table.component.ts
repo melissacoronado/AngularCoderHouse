@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectEnrollments, selectEnrollmentsIsLoading } from '../../store/enrollment.selectors';
 import { Observable } from 'rxjs';
@@ -18,4 +18,7 @@ export class EnrollmentsTableComponent {
     this. enrollments$ = this.store.select(selectEnrollments);
     this.isLoading$ = this.store.select(selectEnrollmentsIsLoading);
   }
+
+  @Output()
+  deleteEnrollment = new EventEmitter();  
 }

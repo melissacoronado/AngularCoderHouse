@@ -37,12 +37,12 @@
         <button [routerLink]="element.id" mat-icon-button color="accent">
           <mat-icon>visibility</mat-icon>
         </button>
-        <!--button mat-icon-button color="primary" (click)="editStudent.emit(element.id)">
+        <button mat-icon-button color="primary" [disabled]="(userRole$ | async) !== 'Admin'" (click)="editStudent.emit(element.id)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" (click)="deleteStudent.emit(element.id)">
+        <button mat-icon-button color="warn" [disabled]="(userRole$ | async) !== 'Admin'" (click)="deleteStudent.emit(element.id)">
           <mat-icon>delete</mat-icon>
-        </button-->
+        </button>
       </td>
     </ng-container>
   

@@ -13,10 +13,24 @@ import Swal from 'sweetalert2';
 })
 export class ClassesComponent {
   classes$: Observable<IClasses[]>;
+  diasSemana = ['Lunes','Martes','Miércoles', 'Jueves', 'Viernes'];
 
   constructor(private clasesService: classesService, private matDialog: MatDialog){
     this.classes$ = this.clasesService.getClasses$();
   }
+
+  getSelectedDays(result: any): string[] {
+    let diasSelecc: string[] = [];
+
+    for (const day in result) {
+      if (result.hasOwnProperty(day) && result[day] === true) {
+        diasSelecc.push(day);
+      }
+    }
+
+    return diasSelecc;
+  }
+  
 
   onAddClass():void{
     this.matDialog.open(ClassesDialogComponent)
@@ -26,10 +40,10 @@ export class ClassesComponent {
         if(result){
           this.classes$ = this.clasesService.addClass$({
             id: Math.floor(Math.random() * (1000 - 1 + 1)) + 1,
-            diasClases: ['Miercoles', 'Jueves'],
-            fechaInicio: '2024-05-01',
-            fechaFin: '2024-07-31',
-            courseId: 1
+            diasClases: this.getSelectedDays(result),
+            fechaInicio: result.fechaInicio,
+            fechaFin: result.fechaFin,
+            courseId: result.courseId
           });
         }
       }
@@ -44,8 +58,16 @@ export class ClassesComponent {
       .afterClosed()
       .subscribe({
         next: (result) => {
-          if (!!result) {  
-            this.classes$ = this.clasesService.editClass$(classId, result);
+          if (!!result) { 
+            console.log(classId); 
+            console.log(result);
+            this.classes$ = this.clasesService.editClass$(classId, {
+              id: result.id,
+              diasClases: this.getSelectedDays(result),
+              fechaInicio: result.fechaInicio,
+              fechaFin: result.fechaFin,
+              courseId: result.courseId
+            });
           }
         },
       });

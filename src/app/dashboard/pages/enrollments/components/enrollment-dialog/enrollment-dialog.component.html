@@ -8,8 +8,10 @@
             <div class="col-6">
                 <mat-form-field class="w-100"> 
                     <mat-label>Curso - Selecciona una opción</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let curso of (cursosList$ | async)" [value]="curso.id">{{ curso.nombre }}</mat-option>
+                    <mat-select formControlName="courseId"  [(value)]="selectedValue" (selectionChange)="onSelectionChange($event)">
+                      <mat-option *ngFor="let course of cursosList$ | async" [value]="course.id">
+                        {{ course.nombre }}
+                      </mat-option>
                     </mat-select>
 
                     <!--input formControlName="courseId" matInput /-->
@@ -19,28 +21,38 @@
                   </mat-form-field>
             </div>
 
-
             <div class="col-6">
                 <mat-form-field class="w-100"> 
                     <mat-label>Clases - Selecciona una opción</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="classId">
                         <mat-option *ngFor="let clase of (classesList$ | async)" [value]="clase.id">{{ clase.diasClases }}</mat-option>
                     </mat-select>
 
                     <!--input formControlName="courseId" matInput /-->
                     <mat-error>
-                      {{ enrollmentsForm.get("classesid")?.errors | formErrors }}
+                      {{ enrollmentsForm.get("classId")?.errors | formErrors }}
                     </mat-error>
                   </mat-form-field>
             </div>    
             <div class="col-6">
                 <mat-form-field class="w-100">
-                  <mat-label>Alumno</mat-label>
-                  <input matInput formControlName="student">                 
+                  <mat-label>Escriba nombre para cargar alumnos</mat-label>
+                  <input matInput [formControl]="searchControl" placeholder="Search">
+                </mat-form-field> 
+
+                <mat-form-field class="w-100">
+                  <mat-label>Selecciona un alumno</mat-label>
+                  <mat-select formControlName="studentId">
+                    <mat-option *ngFor="let item of filteredItems" [value]="item.id">
+                      {{ item | fullname }}
+                    </mat-option>
+                  </mat-select>
+
                   <mat-error>
-                    {{ enrollmentsForm.get("student")?.errors | formErrors }}
+                    {{ enrollmentsForm.get("studentId")?.errors | formErrors }}
                   </mat-error>
-                </mat-form-field>
+                </mat-form-field>             
+
               </div>              
             
         </div>
@@ -49,7 +61,7 @@
   </div>
   <div mat-dialog-actions>
     <button mat-button mat-dialog-close>Cancelar</button>
-    <button mat-button cdkFocusInitial color="primary">Guardar</button>
+    <button mat-button cdkFocusInitial color="primary" (click)="onSubmit()">Guardar</button>
   </div>
 
 

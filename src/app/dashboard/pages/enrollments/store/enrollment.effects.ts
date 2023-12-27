@@ -6,6 +6,8 @@ import { EnrollmentActions } from './enrollment.actions';
 import { HttpClient } from '@angular/common/http';
 import { IEnrollments } from '../models/IEnrollments';
 import { environment } from 'src/app/environments/environment.local';
+import { ICourse } from '../../courses/models/courses';
+import { IEnrollmentPayload } from '../models/IEnrollmentPayload';
 
 
 @Injectable()
@@ -29,6 +31,41 @@ export class EnrollmentEffects {
     );
   });
 
+  loadEnrollmentsDialogOptions$ = createEffect(() => 
+    this.actions$.pipe(
+      ofType(EnrollmentActions.loadEnrollmentsDialogOptions), 
+      concatMap(() => 
+        this.getEnrollmentsDialogActions().pipe(
+          map(data => 
+              EnrollmentActions.loadEnrollmentsDialogOptionsSuccess({data})
+          ),
+          catchError((err) =>
+            of(
+              EnrollmentActions.loadEnrollmentsDialogOptionsFailure({
+                error: err,
+              })
+            )
+          )
+   ))  
+  ));
+
+
+  createEnrollment$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EnrollmentActions.createEnrollment),
+      concatMap((action) => {
+        return this.createEnrollment(action.payload).pipe(
+          // Si sale bien
+          map((data) => EnrollmentActions.loadEnrollments()),
+          // Si hay error
+          catchError((error) =>
+            of(EnrollmentActions.createEnrollmentFailure({ error }))
+          )
+        );
+      })
+    )
+  );
+
 
   constructor(private actions$: Actions, private httpClient: HttpClient) {}
 
@@ -38,4 +75,14 @@ export class EnrollmentEffects {
     );
     //return this.httpClient.get<ICourse[]>(`${environment.baseUrl}/courses`);
   }
+
+  getEnrollmentsDialogActions(): Observable<ICourse[]> {    
+    return this.httpClient.get<ICourse[]>(`${environment.baseUrl}/courses`);
+  }
+
+  createEnrollment(payload: IEnrollmentPayload): Observable<IEnrollments> {
+    return this.httpClient.post<IEnrollments>(`${environment.baseUrl}/enrollments`, payload);
+    //.pipe(concatMap(() => this.getEnrollments$()));
+  }
+
 }

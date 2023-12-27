@@ -1,25 +1,23 @@
-<h1 mat-dialog-title>  Cursos     </h1>
+<h1 mat-dialog-title>  Clases     </h1>
 
 <div mat-dialog-content>   
       <form [formGroup]="classesForm">        
         <div class="row">
 
 
-          <div class="col-6">
-            <mat-form-field class="w-100"> 
+          <div class="col-6" >
+            
                 <mat-label>Dias Clases:</mat-label>
-                <mat-checkbox *ngFor="let semana of curso"
-                  class="example-margin"
-                  [(ngModel)]="semana.seleccionado">
-                  {{ semana.dia }}
-              </mat-checkbox>
+                <mat-checkbox formControlName="lunes">Lunes</mat-checkbox>
+                <mat-checkbox formControlName="martes">Martes</mat-checkbox>
+                <mat-checkbox formControlName="miercoles">Miércoles</mat-checkbox>
+                <mat-checkbox formControlName="jueves">Jueves</mat-checkbox>
+                <mat-checkbox formControlName="viernes">Viernes</mat-checkbox>
 
-                <!--input formControlName="courseId" matInput /-->
-                <mat-error>
-                  {{ classesForm.get("diasClases")?.errors | formErrors }}
-                </mat-error>
-              </mat-form-field>
-        </div>
+                <div [ngClass]="{ 'dias-no-seleccionados': formTouched && noDaysSelected  }">
+                  Debe seleccionar al menos un día
+                </div>            
+          </div>
 
 
             <div class="col-6">
@@ -33,7 +31,8 @@
                   {{ classesForm.get("fechaInicio")?.errors | formErrors }}
                 </mat-error>
               </mat-form-field>
-            </div>    
+            </div>  
+
             <div class="col-6">
                 <mat-form-field class="w-100">
                   <mat-label>Fecha Fin</mat-label>
@@ -49,7 +48,7 @@
             <div class="col-6">
                 <mat-form-field class="w-100"> 
                     <mat-label>Curso - Selecciona una opción</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="courseId">
                         <mat-option *ngFor="let curso of (cursosList$ | async)" [value]="curso.id">{{ curso.nombre }}</mat-option>
                     </mat-select>
 

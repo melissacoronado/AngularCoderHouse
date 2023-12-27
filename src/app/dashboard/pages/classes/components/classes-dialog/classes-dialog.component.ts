@@ -14,17 +14,11 @@ import { ISemana } from '../../Models/ISemana';
 })
 export class ClassesDialogComponent {
   classesForm: FormGroup;
-
   cursosList$: Observable<ICourse[]>;
-  curso: ISemana[] = [
-    { dia: 'Lunes', seleccionado: false },
-    { dia: 'Martes', seleccionado: false },
-    { dia: 'Miércoles', seleccionado: false },
-    { dia: 'Jueves', seleccionado: false },
-    { dia: 'Viernes', seleccionado: false },
-    { dia: 'Sábado', seleccionado: false },
-    { dia: 'Domingo', seleccionado: false },
-  ]
+  formTouched = false;
+
+
+  diasSemana = ['lunes','martes','miercoles', 'jueves', 'viernes'];
   
   constructor(
     private formBuilder: FormBuilder,
@@ -38,7 +32,12 @@ export class ClassesDialogComponent {
   {
     this.classesForm = this.formBuilder.group(
       {
-        diasClases: ['', Validators.required],
+        //diasClases: [],
+        lunes: [''],
+        martes: [''],
+        miercoles: [''],
+        jueves: [''],
+        viernes: [''],
         fechaInicio: ['', Validators.required],
         fechaFin: ['', Validators.required],
         courseId: ['', Validators.required],        
@@ -52,6 +51,20 @@ export class ClassesDialogComponent {
       this.classService.getClassById$(classId).subscribe({
         next: (c) => {
           if (c) {
+
+            this.classesForm.setValue({
+              lunes: c.diasClases.includes('lunes') ? true : false,
+              martes: c.diasClases.includes('martes') ? true : false,
+              miercoles: c.diasClases.includes('miercoles') ? true : false,
+              jueves: c.diasClases.includes('jueves') ? true : false,
+              viernes: c.diasClases.includes('viernes') ? true : false,
+              fechaInicio: c.fechaInicio,
+              fechaFin: c.fechaFin,
+              courseId: c.courseId,
+            });
+
+            this.formTouched = false;
+
             //para cargar los datos en el dialog/modal
             this.classesForm.patchValue(c);
           }
@@ -62,8 +75,38 @@ export class ClassesDialogComponent {
     
   }
 
+  getSelectedDays(): string[] {
+    let diasSelecc: string[] = [];
+
+    for (const day in this.classesForm.controls) {
+      if (this.classesForm.controls.hasOwnProperty(day) && this.classesForm.controls[day].value === true) {
+        diasSelecc.push(day);
+      }  
+    }
+    return diasSelecc;
+
+    /*return Object.keys(this.classesForm.controls).filter(
+      (control) =>{ //console.log(control); 
+        console.log(this.classesForm.controls[control])
+        this.diasSemana.includes(control) ? this.classesForm.controls[control] : ''
+      }
+    ); */
+  }
+
+  get noDaysSelected(): boolean {
+    const selectedDays = this.getSelectedDays();
+    return selectedDays.length == 0 ? true : false;
+  }
+
+
  onSubmit(): void { 
-    if (this.classesForm.invalid) {
+  //console.log(this.getSelectedDays())
+//console.log(this.getSelectedDays().length)
+ /* const controlsWithErrors = Object.keys(this.classesForm.controls).filter(
+    (control) => this.classesForm.controls[control].invalid );
+  console.log('Controles con errores:', controlsWithErrors);*/
+
+    if (this.classesForm.invalid || this.getSelectedDays().length == 0) {
       this.classesForm.markAllAsTouched();
     } else { 
       this.matDialogRef.close(this.classesForm.value);

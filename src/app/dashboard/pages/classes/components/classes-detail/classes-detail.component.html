@@ -8,13 +8,23 @@
             <img src="" class="header-image">
           </ng-template>
         </div>
-        <mat-card-title>{{classDetail.id}}</mat-card-title>
+        <mat-card-title>{{classDetail.course?.nombre}}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <br>
         <p>Dias de cursada: {{classDetail.diasClases}}</p>
         <p>Fecha Inicio: {{classDetail.fechaInicio}}</p>
         <p>Fecha Fin: {{classDetail.fechaFin}}</p>
+
+        <mat-card-content>
+          <br>
+          <h4>Detalles Curso</h4>
+          <p>Id Curso: {{classDetail.course?.id}}</p>
+          <p>Capacidad: {{classDetail.course?.capacidad}}</p>
+          <p>Activo: 
+              <mat-icon *ngIf="classDetail.course?.activo" style="color:green;">check circle icon</mat-icon> 
+              <mat-icon *ngIf="!classDetail.course?.activo" style="color: red;">cancel icon</mat-icon></p>
+        </mat-card-content>
       </mat-card-content>
     </mat-card>
   </div>

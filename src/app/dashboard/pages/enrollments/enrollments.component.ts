@@ -6,6 +6,7 @@ import { EnrollmentDialogComponent } from './components/enrollment-dialog/enroll
 import { IEnrollments } from './models/IEnrollments';
 import { Observable } from 'rxjs';
 import { enrollmentsService } from './enrollments.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-enrollments',
@@ -37,4 +38,24 @@ export class EnrollmentsComponent {
       }
     })
   }
+
+  onDeleteEnrollment(enrollmentId: number): void {
+
+    Swal.fire({
+      title: `Confirma eliminar Inscripción Id ${enrollmentId}?`,
+      text: '¡No podrás deshacer esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminarlo'
+    }).then((result) => {      
+      if (result.isConfirmed) {
+        
+        // Lógica para eliminar el elemento
+        this.enrollment$ = this.enrollmentService.deletetEnrollments$(enrollmentId);
+      }
+    });
+  }
+
 }

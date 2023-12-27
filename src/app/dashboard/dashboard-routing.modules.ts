@@ -34,7 +34,7 @@ import { HomeComponent } from "./pages/home/home.component";
                     },
                     {
                         path: 'enrollments',
-                        //canActivate: [adminGuard],
+                        canActivate: [adminGuard],
                         loadChildren: () => import('./pages/enrollments/enrollments.module').then((x) => x.EnrollmentsModule)
                     },
 
